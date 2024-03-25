@@ -1,0 +1,47 @@
+.loginPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 237px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.loginPageLogo{
+    margin-bottom: 128px;
+}
+.loginPageLogo img{
+    margin: auto;
+}
+.loginPageLabel{
+    font-size: 12px;
+    padding-bottom: 15px;
+    color: #AFAFAF;
+    margin-bottom: 22px;
+    display: block;
+}
+.loginPageInput{
+    border: 0;
+    border-bottom: 2px solid #d3d3d3;
+    padding: 7px 5px;
+    text-align: center;
+    color: #525252;
+    font-size: 18px;
+    font-weight: 600;
+}
+.loginPageInput:focus-visible{
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid #d3d3d3;
+}
+.loginPageButton{
+    width: 100%;
+    display: block;
+    background-color: #EF8720;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+}

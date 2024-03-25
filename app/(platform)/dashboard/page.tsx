@@ -7,6 +7,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import {redirect} from "next/navigation";
 
 //DEALS
 async function getData(uuid: string) {
@@ -25,7 +26,7 @@ const DealBanner = () => {
         </div>
     );
 };
-const DealItem = ({ key, data }) => {
+const DealItem = ({ data }: { data: any}) => {
     return (
         <div className="deal-item" data-key={ data.TYPE === 'FLAT' ? data.TYPE : ''}>
             <div className="deal-item__icon">
@@ -59,7 +60,7 @@ const DealItem = ({ key, data }) => {
         </div>
     );
 };
-const DealsTemplate = ({ data }) => {
+const DealsTemplate = ({ data }: { data: any}) => {
     if(data === null){
         return (
             <div>
@@ -85,14 +86,12 @@ const DealsTemplate = ({ data }) => {
     return (
         <div>
             <div className="deals">
-                {data.map((item, index) => (
+                {data.map(({item, index}: {item:any, index:number}) => (
                     <DealItem key={index} data={item}/>
                 ))}
                 <DealBanner />
             </div>
         </div>
-
-
     );
 };
 
@@ -101,7 +100,7 @@ async function getCatalog() {
     const res = await fetch('https://backend-dolshik.shelikhov.me/api/catalog/get-list');
     return res.json()
 }
-const CatalogItem = ({ data }) => {
+const CatalogItem = ({ data }: { data: any}) => {
     return (
         <div className="catalog_item">
             <div className="catalog_item__img">
@@ -124,11 +123,11 @@ const CatalogItem = ({ data }) => {
         </div>
     );
 }
-const CatalogTemplate = ({ data }) => {
+const CatalogTemplate = ({ data }: { data: any}) => {
     return (
 
         <div className="catalog_items">
-            {data.map((item, index) => (
+            {data.map(({item, index}: {item:any, index:number}) => (
                 <CatalogItem key={index} data={item}/>
             ))}
         </div>
@@ -139,7 +138,11 @@ const CatalogTemplate = ({ data }) => {
 
 export default async function DashboardPage() {
     const cookieStore = cookies();
-    const userData = getData(cookieStore.get('uuid')?.value);
+    const guid = cookieStore.get('uuid')?.value;
+    if(!guid){
+        redirect('/login');
+    }
+    const userData = getData(guid);
     const catalogData = getCatalog();
     const [user, catalog] = await Promise.all([userData, catalogData])
 
@@ -170,7 +173,7 @@ export default async function DashboardPage() {
                         </div>
                     </div>
                 </div>
-                <div class="payments__item">
+                <div className="payments__item">
                     <div className="payments__item__title">
                         Платежи
                     </div>

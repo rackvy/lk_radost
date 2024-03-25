@@ -2,6 +2,9 @@
 
 import React, { useState, FormEvent } from 'react';
 import { setCookie } from "cookies-next";
+import style from './styles.module.css';
+import Image from "next/image";
+
 
 export default function AuthPage() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -26,13 +29,19 @@ export default function AuthPage() {
 
             // Handle response if necessary
             const data = await response.json();
+            if(data.error){
+                setError(data.error);
+                console.error(data.error);
+            }
             if(data.hash){
                 setCookie('uuid', data.hash, { path: '/', maxAge: 60 * 6 * 24 });
                 window.location.href = '/dashboard';
             }
         } catch (error) {
             // Capture the error message to display to the user
-            setError(error.message);
+            if(error instanceof Error){
+                setError(error.message);
+            }
             console.error(error);
         } finally {
             setIsLoading(false);
@@ -40,15 +49,34 @@ export default function AuthPage() {
     }
 
     return (
-        <div>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            <form onSubmit={onSubmit}>
-                <input type="text" name="PHONE" />
-                <input type="password" name="PASSWORD" />
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Авторизация...' : 'Авторизоваться'}
-                </button>
-            </form>
+        <div className={style.loginPage}>
+            <div>
+                <div className={style.loginPageLogo}>
+                    <Image
+                        src="https://backend-dolshik.shelikhov.me/uploads/radostnnnnn.png"
+                        alt="Логотип ЖСК Радость"
+                        width={169}
+                        height={112}
+                        priority={false}
+                    />
+
+                </div>
+
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                <form onSubmit={onSubmit}>
+                    <label className={style.loginPageLabel}>
+                        Введите мобильный телефон
+                        <input type="text" name="PHONE" placeholder="+7 (___) ___ ____" className={style.loginPageInput}/>
+                    </label>
+                    <label className={style.loginPageLabel}>
+                        Пароль
+                        <input type="password" name="PASSWORD" className={style.loginPageInput}/>
+                    </label>
+                    <button type="submit" disabled={isLoading} className={style.loginPageButton}>
+                        {isLoading ? 'Авторизация...' : 'Авторизоваться'}
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }
