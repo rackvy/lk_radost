@@ -1,15 +1,33 @@
 export interface UserInfo {
     ID: number;
+    NAME: string;
+    EMAIL: string;
+    PHONE: string;
+    SNAME: string;
+    LNAME: string;
+    INN: string;
+    SNILS: string;
+    IDCRM: number;
+    PASSPORT: string;
+    PASSPORTDATE: string;
+    PASSPORTORG: string;
+    PASSPORTORGCODE: string;
     DEAL: {
         [key: string]: {
             TYPE: string;
             ALLPRICE: number;
             STATUS: string;
             TITLE: string;
-            // Добавьте другие поля, если они присутствуют
+            IDCRM: number;
         };
     };
-    // Добавьте другие поля, если они присутствуют
+    APARTMENTS: {
+        ID: number;
+        NAME: string;
+        PRICE: number;
+        SQUARE: number;
+        PHOTO: string;
+    }
 }
 
 export interface Catalog {
@@ -18,9 +36,6 @@ export interface Catalog {
         cat: string;
         name: string;
         price: string;
-        // Добавьте другие поля, если они присутствуют
     };
-
-    // Добавьте другие поля, если они присутствуют
 }
 

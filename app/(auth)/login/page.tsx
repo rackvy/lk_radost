@@ -61,6 +61,7 @@ export default function AuthPage() {
                         width={169}
                         height={112}
                         priority={false}
+                        unoptimized
                     />
 
                 </div>

@@ -110,6 +110,7 @@ const ProfilePage: React.FC = () => {
                             alt=""
                             width={363}
                             height={133}
+                            unoptimized
                         />
                     </div>
                 </div>
@@ -204,6 +205,7 @@ const ProfilePage: React.FC = () => {
                                             alt=""
                                             width={116}
                                             height={116}
+                                            unoptimized
                                         />
                                     </div>
                                     <div className="catalog_item__category">
