@@ -13,68 +13,24 @@ import {
 import {redirect} from "next/navigation";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import { UserInfo, Catalog } from '@/app/types';
 
-
-//CATALOG
-async function getCatalog() {
-    const res = await fetch('https://backend-dolshik.shelikhov.me/api/catalog/get-list');
-    return res.json()
-}
-const CatalogItem = ({ data }: { data: any}) => {
-    if(data === undefined) return (
-        <div>Ошибка</div>
-    );
-    return (
-        <div className="catalog_item">
-            <div className="catalog_item__img">
-                <Image
-                    src={ data.picture }
-                    alt=""
-                    width={116}
-                    height={116}
-                />
-            </div>
-            <div className="catalog_item__category">
-                { data.cat }
-            </div>
-            <div className="catalog_item__name">
-                { data.name }
-            </div>
-            <div className="catalog_item__price">
-                { data.price } ₽
-            </div>
-        </div>
-    );
-}
-const CatalogTemplate = ({ data }: { data: any}) => {
-    if(data === undefined) return (
-        <div>Ошибка</div>
-    );
-    return (
-
-        <div className="catalog_items">
-            {data.map((item, index) => (
-                <CatalogItem key={index} data={item}/>
-            ))}
-        </div>
-
-    );
-};
 
 
 const ProfilePage: React.FC = () => {
     const router = useRouter();
-    const [userInfo, setUserInfo] = useState(null);
-    const [catalog, setCatalog] = useState(null);
+    const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+    const [catalog, setCatalog] = useState<Catalog | null>(null);
 
     useEffect(() => {
         const token = Cookies.get('uuid');
-        if (token === undefined) {
+        if (!token || token === undefined) {
             router.push('/login');
         } else {
             fetchUserInfo(token);
             fetchCatalog();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchUserInfo = async (token: string) => {
@@ -110,12 +66,14 @@ const ProfilePage: React.FC = () => {
         }
     };
 
+    //console.log(userInfo);
+
     return (
         <div className="" data-id={userInfo ? userInfo.ID : ''}>
             {userInfo ? (
                 <div className="deals">
                     {Object.keys(userInfo.DEAL).map((key) => (
-                        <div className="deal-item" data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
+                        <div className="deal-item" key={key} data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
                             <div className="deal-item__icon">
                                 { userInfo.DEAL[key].TYPE == 'CATALOG' ?
                                     <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,7 +134,6 @@ const ProfilePage: React.FC = () => {
                     <div className="text-center">
                         <Link
                             href="https://жск-радость.рф/flats"
-                            targer="_blank"
                         >
                             Выбрать квартиру
                         </Link>
@@ -240,7 +197,7 @@ const ProfilePage: React.FC = () => {
                     catalog ? (
                         <div className="catalog_items">
                             {Object.keys(catalog).map((key) => (
-                                <div className="catalog_item">
+                                <div className="catalog_item" key={key}>
                                     <div className="catalog_item__img">
                                         <Image
                                             src={ catalog[key].picture }
@@ -262,7 +219,10 @@ const ProfilePage: React.FC = () => {
                             ))}
                         </div>
                     ) : (
-                        <div></div>
+                        <Alert>
+                            <BadgeInfo className="h-4 w-4" />
+                            <AlertTitle>В каталоге пока нет товаров</AlertTitle>
+                        </Alert>
                     )}
             </div>
         </div>
