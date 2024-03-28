@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useState, FormEvent } from 'react';
-import { setCookie } from "cookies-next";
+import React, { useState, FormEvent, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 import style from './styles.module.css';
 import Image from "next/image";
 
 
 export default function AuthPage() {
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
+
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -34,8 +37,8 @@ export default function AuthPage() {
                 console.error(data.error);
             }
             if(data.hash){
-                setCookie('uuid', data.hash, { path: '/', maxAge: 60 * 6 * 24 });
-                window.location.href = '/dashboard';
+                Cookies.set('uuid', data.hash);
+                router.push('/dashboard');
             }
         } catch (error) {
             // Capture the error message to display to the user

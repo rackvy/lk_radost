@@ -1,24 +1,38 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
-import {cookies} from "next/headers";
+//import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
+import React, {useEffect, useState} from "react";
+import Cookies from "js-cookie";
+import { useRouter } from 'next/navigation';
 
 
-async function getData(uuid: string) {
-    const res = await fetch('https://backend-dolshik.shelikhov.me/api/user/get_user_name?id='+uuid);
-    return res.json()
-}
+//
+// async function getData(uuid: string) {
+//     const res = await fetch('https://backend-dolshik.shelikhov.me/api/user/get_user_name?id='+uuid);
+//     return res.json()
+// }
 
-export const Header = async () => {
-    const cookieStore = cookies();
-    const guid = cookieStore.get('uuid')?.value;
 
-    if(!guid) {
-        return (
-            <div></div>
-        );
-    }
-    const data = getData(guid);
-    const [user] = await Promise.all([data]);
+const Header = () => {
+    const [name, setName] = useState('');
+
+    useEffect(() => {
+        const token = Cookies.get('uuid');
+        console.log(token);
+        // Пример запроса к серверу для получения информации о пользователе
+        if (token) {
+            fetch('https://backend-dolshik.shelikhov.me/api/user/get_user_name?id='+token, {
+                method: 'GET',
+            })
+                .then((response) => response.json())
+                .then((data) => setName(data.NAME))
+                .catch((error) => console.error(error));
+        }
+    }, []);
+
     return (
         <header className="header">
             <div className="mx-auto w-full w-auto">
@@ -46,7 +60,11 @@ export const Header = async () => {
                 </div>
                 <div className="header__name">
                     <div className="header__name__hello">Здравствуйте,</div>
-                    <h2>{user.NAME}</h2>
+                    {name ? (
+                        <h2>{name}</h2>
+                    ) : (
+                        <h2>Милая пандочка</h2>
+                    )}
                 </div>
                 <div className="header__stories_prw">
                     <div className="storeis_item">
@@ -72,4 +90,6 @@ export const Header = async () => {
             </div>
         </header>
     );
-}
+};
+
+export default Header;
