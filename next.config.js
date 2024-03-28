@@ -1,6 +1,7 @@
 module.exports = {
     output: 'export',
     images: {
+        disableStaticImages: true,
         remotePatterns: [
             {
                 protocol: 'https',

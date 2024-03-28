@@ -73,6 +73,7 @@ const Header = () => {
                             alt=""
                             width={92}
                             height={92}
+                            unoptimized
                         />
                         <span>Ход строительства январь 2024</span>
                     </div>
@@ -82,6 +83,7 @@ const Header = () => {
                             alt=""
                             width={92}
                             height={92}
+                            unoptimized
                         />
                         <span>Первый дом ВСЁ!</span>
                     </div>
