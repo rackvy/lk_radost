@@ -12,6 +12,8 @@ export interface UserInfo {
     PASSPORTDATE: string;
     PASSPORTORG: string;
     PASSPORTORGCODE: string;
+    BALANCE: string;
+    CURRENCY: string;
     DEAL: {
         [key: string]: {
             TYPE: string;
@@ -37,5 +39,20 @@ export interface Catalog {
         name: string;
         price: string;
     };
+}
+export interface Deal {
+    title: string;
+    status: string;
+    idcrm: number;
+    type: string;
+    allprice: number;
+    message: {
+        [key: string]: {
+            id: string;
+            text: string;
+            owner: string;
+            type: string;
+        };
+    }
 }
 

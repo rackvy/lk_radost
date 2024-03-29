@@ -73,7 +73,7 @@ const ProfilePage: React.FC = () => {
             {userInfo ? (
                 <div className="deals">
                     {Object.keys(userInfo.DEAL).map((key) => (
-                        <div className="deal-item" key={key} data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
+                        <Link href="/dashboard/deal/" data-href={`/dashboard/deal/${userInfo.DEAL[key].IDCRM}`} className="deal-item" key={key} data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
                             <div className="deal-item__icon">
                                 { userInfo.DEAL[key].TYPE == 'CATALOG' ?
                                     <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,11 +102,11 @@ const ProfilePage: React.FC = () => {
                                     { userInfo.DEAL[key].TITLE }
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                     <div className="deal-img" data-key="BANNER">
                         <Image
-                            src="http://lk.shelikhov.me/img/banner.png"
+                            src="https://lk.shelikhov.me/img/banner.png"
                             alt=""
                             width={363}
                             height={133}
@@ -172,7 +172,7 @@ const ProfilePage: React.FC = () => {
                             Баланс
                         </div>
                         <div className="payments__item__price">
-                            0 ₽
+                            {userInfo?.BALANCE ? userInfo.BALANCE : '0'} ₽
                         </div>
                     </div>
                     <div className="mb-2">
@@ -180,7 +180,7 @@ const ProfilePage: React.FC = () => {
                             Бонусы
                         </div>
                         <div className="payments__item__price">
-                            200 000 ₽
+                            0 ₽
                         </div>
                     </div>
                 </div>

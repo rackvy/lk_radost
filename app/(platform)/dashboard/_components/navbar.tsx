@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
     return (
-        <nav className="navbar">
+        <nav className="navbar" id="js-navbar">
             <Link href="#" className="navbat-item">
                 <svg width="15" height="23" viewBox="0 0 15 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
