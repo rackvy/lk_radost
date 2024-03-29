@@ -29,8 +29,12 @@ const DeailPage: React.FC = () => {
         setIsInputFocused(true);
         // Скрыть навигацию при фокусе на инпуте
         const navbar = document.getElementById('js-navbar');
+        const chatContainer = document.getElementById('js-chatRoomBody');
         if (navbar) {
-            navbar.style.display = 'none'; // Или можно добавить класс для скрытия
+            navbar.style.display = 'none';
+        }
+        if (chatContainer) {
+            chatContainer.style.paddingBottom = '2px';
         }
     };
 
@@ -38,16 +42,21 @@ const DeailPage: React.FC = () => {
         setIsInputFocused(false);
         // Показать навигацию после потери фокуса
         const navbar = document.getElementById('js-navbar');
+        const chatContainer = document.getElementById('js-chatRoomBody');
         if (navbar) {
             navbar.style.display = 'flex'; // Или убрать класс, добавленный для скрытия
         }
+        if (chatContainer) {
+            chatContainer.style.paddingBottom = '96px';
+        }
+
     };
 
     return (
-        <div className={style.charRoomBody}>
-            <div className={style.charRoomBodyTitle}>
+        <div className={style.chatRoomBody} id="js-chatRoomBody">
+            <div className={style.chatRoomBodyTitle}>
                 <h1>Сделка ОД 1/1234</h1>
-                <span className={style.charRoomBodyStatus}>Подписание договора</span>
+                <span className={style.chatRoomBodyStatus}>Подписание договора</span>
             </div>
             <div className={style.chatRoomMasseges}>
                 <div className={style.messageInfo}>
