@@ -34,7 +34,7 @@
     max-height: calc(100% - 42px);
 }
 .chatInput{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: calc(100% - 30px);
 }
