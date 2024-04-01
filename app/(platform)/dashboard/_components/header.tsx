@@ -2,6 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button"
 //import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import React, {useEffect, useState} from "react";
@@ -67,26 +78,57 @@ const Header = () => {
                     )}
                 </div>
                 <div className="header__stories_prw">
-                    <div className="storeis_item">
-                        <Image
-                            src="https://dolshik.online/upload/resize_cache/iblock/162/mqv9675e8n04ee9oj07zpb5068344of6/760_400_2/09c3186c-be7c-4295-ade6-e357e26aa74a.jpeg"
-                            alt=""
-                            width={92}
-                            height={92}
-                            unoptimized
-                        />
-                        <span>Ход строительства январь 2024</span>
-                    </div>
-                    <div className="storeis_item">
-                        <Image
-                            src="https://dolshik.online/upload/resize_cache/iblock/84a/80_75_2/2-min.jpg"
-                            alt=""
-                            width={92}
-                            height={92}
-                            unoptimized
-                        />
-                        <span>Первый дом ВСЁ!</span>
-                    </div>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <div className="storeis_item">
+                                <Image
+                                    src="https://dolshik.online/upload/resize_cache/iblock/162/mqv9675e8n04ee9oj07zpb5068344of6/760_400_2/09c3186c-be7c-4295-ade6-e357e26aa74a.jpeg"
+                                    alt=""
+                                    width={92}
+                                    height={92}
+                                    unoptimized
+                                />
+                                <span>Ход строительства январь 2024</span>
+                            </div>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-md">
+                            <div className="flex items-center space-x-2 storiesImag">
+                                <Image
+                                    src="https://backend-dolshik.shelikhov.me/uploads/stories/1.jpg"
+                                    width={100}
+                                    height={100}
+                                    alt=""
+                                    unoptimized
+                                />
+
+                            </div>
+                        </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <div className="storeis_item">
+                                <Image
+                                    src="https://dolshik.online/upload/resize_cache/iblock/84a/80_75_2/2-min.jpg"
+                                    alt=""
+                                    width={92}
+                                    height={92}
+                                    unoptimized
+                                />
+                                <span>Первый дом ВСЁ!</span>
+                            </div>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-md">
+                            <div className="flex items-center space-x-2 storiesImag">
+                                <Image
+                                    src="https://backend-dolshik.shelikhov.me/uploads/stories/2.jpg"
+                                    width={100}
+                                    height={100}
+                                    alt=""
+                                    unoptimized
+                                />
+                            </div>
+                        </DialogContent>
+                    </Dialog>
                 </div>
 
             </div>
