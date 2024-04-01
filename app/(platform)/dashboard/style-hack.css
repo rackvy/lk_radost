@@ -1,0 +1,17 @@
+.header__name{
+    display: block;
+}
+.header__stories_prw{
+    display: flex;
+}
+body{
+    overflow: auto;
+    max-height: 100%;
+}
+.header{
+    padding-bottom: 90px;
+}
+
+.hideNavBar{
+    display: flex;
+}

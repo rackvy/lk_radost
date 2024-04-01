@@ -52,6 +52,8 @@ export interface Deal {
             text: string;
             owner: string;
             type: string;
+            date: string;
+            time: string;
         };
     }
 }

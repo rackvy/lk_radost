@@ -17,6 +17,7 @@ import { UserInfo, Catalog } from '@/app/types';
 
 
 
+
 const ProfilePage: React.FC = () => {
     const router = useRouter();
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
@@ -29,6 +30,23 @@ const ProfilePage: React.FC = () => {
         } else {
             fetchUserInfo(token);
             fetchCatalog();
+        }
+
+        const headerName = document.querySelector('.header__name') as HTMLElement;
+        if (headerName) {
+            headerName.style.display = 'block';
+        }
+        const headerStoriesPrw = document.querySelector('.header__stories_prw') as HTMLElement;
+        if (headerStoriesPrw) {
+            headerStoriesPrw.style.display = 'flex';
+        }
+        const navBar = document.querySelector('#js-navbar') as HTMLElement;
+        if (navBar) {
+            navBar.classList.remove('hideNavBar');
+        }
+        const main = document.querySelector('main.main') as HTMLElement;
+        if (main) {
+            main.classList.remove('mainInChatRoom');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -73,7 +91,7 @@ const ProfilePage: React.FC = () => {
             {userInfo ? (
                 <div className="deals">
                     {Object.keys(userInfo.DEAL).map((key) => (
-                        <Link href="/dashboard/deal/" data-href={`/dashboard/deal/${userInfo.DEAL[key].IDCRM}`} className="deal-item" key={key} data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
+                        <Link href={`/dashboard/deal/?id=${userInfo.DEAL[key].IDCRM}`} data-href={`/dashboard/deal/${userInfo.DEAL[key].IDCRM}`} className="deal-item" key={key} data-key={ userInfo.DEAL[key].TYPE === 'FLAT' ? userInfo.DEAL[key].TYPE : ''}>
                             <div className="deal-item__icon">
                                 { userInfo.DEAL[key].TYPE == 'CATALOG' ?
                                     <svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">

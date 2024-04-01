@@ -1,6 +1,6 @@
 .chatRoomBody{
     width: calc(100% + 30px);
-    height: calc(100vh - 136px);
+    height: calc(100vh - 129px - 56px);
     margin-left: -15px;
     background-color: #fff;
     border-top-left-radius: 20px;
@@ -8,7 +8,7 @@
     margin-top: -20px;
     position: relative;
     z-index: 10;
-    padding: 0 15px 96px;
+    padding: 0 15px;
 }
 .chatRoomBodyTitle{
     position: relative;
@@ -31,11 +31,11 @@
 .chatRoomMasseges{
     margin-top: -56px;
     overflow-y: scroll;
-    max-height: calc(100% - 60px);
+    max-height: calc(100% - 42px);
 }
 .chatInput{
-    position: fixed;
-    //bottom: 96px;
+    position: absolute;
+    bottom: 0;
     width: calc(100% - 30px);
 }
 .inputMessage{

@@ -15,7 +15,6 @@ import Cookies from 'js-cookie';
 import { useRouter, useParams } from 'next/navigation'
 import { UserInfo, Catalog } from '@/app/types';
 import style from './styles.module.css';
-import './style-hack.css';
 
 
 
@@ -31,10 +30,10 @@ const DeailPage: React.FC = () => {
         const navbar = document.getElementById('js-navbar');
         const chatContainer = document.getElementById('js-chatRoomBody');
         if (navbar) {
-            navbar.style.display = 'none';
+            //navbar.style.display = 'none';
         }
         if (chatContainer) {
-            chatContainer.style.paddingBottom = '2px';
+            //chatContainer.style.paddingBottom = '2px';
         }
     };
 
@@ -44,13 +43,32 @@ const DeailPage: React.FC = () => {
         const navbar = document.getElementById('js-navbar');
         const chatContainer = document.getElementById('js-chatRoomBody');
         if (navbar) {
-            navbar.style.display = 'flex'; // Или убрать класс, добавленный для скрытия
+            //navbar.style.display = 'flex'; // Или убрать класс, добавленный для скрытия
         }
         if (chatContainer) {
-            chatContainer.style.paddingBottom = '96px';
+           //chatContainer.style.paddingBottom = '96px';
         }
 
     };
+
+    useEffect(() => {
+        const headerName = document.querySelector('.header__name') as HTMLElement;
+        if (headerName) {
+            headerName.style.display = 'none';
+        }
+        const headerStoriesPrw = document.querySelector('.header__stories_prw') as HTMLElement;
+        if (headerStoriesPrw) {
+            headerStoriesPrw.style.display = 'none';
+        }
+        const navBar = document.querySelector('#js-navbar') as HTMLElement;
+        if (navBar) {
+            navBar.classList.add('hideNavBar');
+        }
+        const main = document.querySelector('main.main') as HTMLElement;
+        if (main) {
+            main.classList.add('mainInChatRoom');
+        }
+    }, []);
 
     return (
         <div className={style.chatRoomBody} id="js-chatRoomBody">

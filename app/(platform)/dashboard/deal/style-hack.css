@@ -1,16 +1,16 @@
 .header__name,
 .header__stories_prw{
-    display: none;
+    //display: none;
 }
 
 body{
-    overflow: hidden;
-    max-height: 100vh;
+    /*overflow: hidden;*/
+    /*max-height: calc(100vh - 56px);*/
 }
 .header{
-    padding-bottom: 90px;
+    //padding-bottom: 90px;
 }
 
 .hideNavBar{
-    display: none !important;
+    //display: none;
 }
