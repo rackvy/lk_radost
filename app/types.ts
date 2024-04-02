@@ -40,6 +40,7 @@ export interface Catalog {
         price: string;
     };
 }
+
 export interface Deal {
     title: string;
     status: string;
@@ -57,4 +58,3 @@ export interface Deal {
         };
     }
 }
-

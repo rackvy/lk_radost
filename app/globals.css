@@ -211,3 +211,6 @@
     width: auto !important;
 }
 /** комментарий **/
+
+
+.storiesImag + button {z-index: 1200;}

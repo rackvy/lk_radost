@@ -13,11 +13,12 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button"
-//import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import Cookies from "js-cookie";
 import { useRouter } from 'next/navigation';
+import Stories from 'react-insta-stories';
+import {Story} from "react-insta-stories/dist/interfaces";
 
 
 //
@@ -43,6 +44,27 @@ const Header = () => {
                 .catch((error) => console.error(error));
         }
     }, []);
+
+    const stories: Story[] = [
+        {
+            url: 'https://backend-dolshik.shelikhov.me/uploads/stories/2.jpg',
+            duration: 2000,
+        },
+        {
+            url: 'https://backend-dolshik.shelikhov.me/uploads/stories/1.jpg',
+            duration: 2000,
+        },
+    ];
+    const stories2: Story[] = [
+        {
+            url: 'https://backend-dolshik.shelikhov.me/uploads/stories/1.jpg',
+            duration: 5000,
+        },
+        {
+            url: 'https://backend-dolshik.shelikhov.me/uploads/stories/2.jpg',
+            duration: 5000,
+        },
+    ];
 
     return (
         <header className="header">
@@ -91,14 +113,13 @@ const Header = () => {
                                 <span>Ход строительства январь 2024</span>
                             </div>
                         </DialogTrigger>
-                        <DialogContent className="max-w-md">
+                        <DialogContent className="max-w-md p-0">
                             <div className="flex items-center space-x-2 storiesImag">
-                                <Image
-                                    src="https://backend-dolshik.shelikhov.me/uploads/stories/1.jpg"
-                                    width={100}
-                                    height={100}
-                                    alt=""
-                                    unoptimized
+                                <Stories
+                                    stories={stories}
+                                    defaultInterval={1500}
+                                    width={432}
+                                    height={768}
                                 />
 
                             </div>
@@ -117,14 +138,13 @@ const Header = () => {
                                 <span>Первый дом ВСЁ!</span>
                             </div>
                         </DialogTrigger>
-                        <DialogContent className="max-w-md">
+                        <DialogContent className="max-w-md p-0">
                             <div className="flex items-center space-x-2 storiesImag">
-                                <Image
-                                    src="https://backend-dolshik.shelikhov.me/uploads/stories/2.jpg"
-                                    width={100}
-                                    height={100}
-                                    alt=""
-                                    unoptimized
+                                <Stories
+                                    stories={stories2}
+                                    defaultInterval={1500}
+                                    width={432}
+                                    height={768}
                                 />
                             </div>
                         </DialogContent>
