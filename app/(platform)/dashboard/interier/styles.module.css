@@ -1,0 +1,47 @@
+.detailInterierBody{
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 10;
+    padding: 0 15px;
+}
+.detailInterierBodyTitle{
+    position: relative;
+    top: -40px;
+}
+    .detailInterierBodyTitle h1{
+        font-size: 18px;
+        color: #fff;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+.detailInterierGallery{
+    display: flex;
+    gap: 5px;
+    overflow-x: scroll;
+    align-items: center;
+    margin-bottom: 30px;
+}
+    .detailInterierGallery::-webkit-scrollbar { width: 0; height: 0;}
+    .detailInterierGallery img{max-width: 90%;}
+
+.detailInterierBodyBack{
+    margin-bottom: 10px;
+}
+.detailInterierBodyPrice{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.detailInterierBodyInfo{
+    padding-bottom: 30px;
+    background-color: #fff;
+}
+.detailInterierBody button{
+    margin-bottom: 15px;
+}
+

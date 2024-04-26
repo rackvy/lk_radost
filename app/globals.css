@@ -214,3 +214,15 @@
 
 
 .storiesImag + button {z-index: 1200;}
+
+.tabsScroll{
+    max-width: 100%;
+    overflow-x: scroll;
+
+}
+.tabsScroll::-webkit-scrollbar { width: 0; height: 0;}
+.main .catalog .catalog_items .catalog_item{max-width: 126px; margin-bottom: 15px;}
+.btn-radost{
+    width: 100%;
+    background-color: rgb(var(--color-rgb));
+}

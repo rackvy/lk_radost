@@ -3,14 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-//import {cookies} from "next/headers";
 import { BadgeInfo } from "lucide-react"
-import {
-    Alert,
-    AlertDescription,
-    AlertTitle,
-} from "@/components/ui/alert"
-import {redirect} from "next/navigation";
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { UserInfo, Catalog } from '@/app/types';
@@ -203,12 +198,131 @@ const ProfilePage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="interiers">
+            <div className="catalog">
                 <h2>Интерьеры для вашей квартиры</h2>
-                <Alert>
-                    <BadgeInfo className="h-4 w-4" />
-                    <AlertTitle>Интерьеры не найдены</AlertTitle>
-                </Alert>
+                <Tabs defaultValue="full" className="w-[400px]">
+                    <div className="tabsScroll">
+                        <TabsList>
+                            <TabsTrigger value="whitebox">Вайтбокс</TabsTrigger>
+                            <TabsTrigger value="full">Под ключ</TabsTrigger>
+                            <TabsTrigger value="fullTM">Под ключ с мебелью и техникой</TabsTrigger>
+                        </TabsList>
+                    </div>
+                    <TabsContent value="whitebox">
+                        <div className="catalog_items">
+                            <Link href="/dashboard/interier/w1">
+                                <div className="catalog_item">
+                                    <div className="catalog_item__img">
+
+                                        <Image
+                                            src="https://dolshik.online/lk-radost/images/w1.jpg"
+                                            alt=""
+                                            width={116}
+                                            height={116}
+                                            unoptimized
+                                        />
+
+                                    </div>
+                                    <div className="catalog_item__name">
+                                        Whitebox
+                                    </div>
+                                    <div className="catalog_item__price">
+                                        1 000 000  ₽
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="full">
+                        <div className="catalog_items">
+                            <Link href="/dashboard/interier/f1">
+                                <div className="catalog_item">
+                                <div className="catalog_item__img">
+                                    <Image
+                                        src="https://dolshik.online/upload/resize_cache/iblock/169/310_250_2/loft-gostinaya-photos-by-alina-lyutaya.webp?1703474904"
+                                        alt=""
+                                        width={116}
+                                        height={116}
+                                        unoptimized
+                                    />
+                                </div>
+                                <div className="catalog_item__name">
+                                    Лофт
+                                </div>
+                                <div className="catalog_item__price">
+                                    2 199 360  ₽
+                                </div>
+                            </div>
+                            </Link>
+                            <Link href="/dashboard/interier/f2">
+                                <div className="catalog_item">
+                                <div className="catalog_item__img">
+                                    <Image
+                                        src="https://dolshik.online/upload/resize_cache/iblock/5be/310_250_2/134_Tribeca_05.jpg"
+                                        alt=""
+                                        width={116}
+                                        height={116}
+                                        unoptimized
+                                    />
+                                </div>
+                                <div className="catalog_item__name">
+                                    Лофт 2
+                                </div>
+                                <div className="catalog_item__price">
+                                    3 199 360  ₽
+                                </div>
+                            </div>
+                            </Link>
+                            <Link href="/dashboard/interier/f3">
+                                <div className="catalog_item">
+                                <div className="catalog_item__img">
+                                    <Image
+                                        src="https://dolshik.online/upload/resize_cache/iblock/277/310_250_2/7.jpg"
+                                        alt=""
+                                        width={116}
+                                        height={116}
+                                        unoptimized
+                                    />
+                                </div>
+                                <div className="catalog_item__name">
+                                    Лофт 3
+                                </div>
+                                <div className="catalog_item__price">
+                                    10 199 360  ₽
+                                </div>
+                            </div>
+                            </Link>
+                        </div>
+                    </TabsContent>
+                    <TabsContent value="fullTM">
+                        <div className="catalog_items">
+                            <Link href="/dashboard/interier/ff1">
+                                <div className="catalog_item">
+                                <div className="catalog_item__img">
+                                    <Image
+                                        src="https://dolshik.online/upload/resize_cache/iblock/169/310_250_2/loft-gostinaya-photos-by-alina-lyutaya.webp?1703474904"
+                                        alt=""
+                                        width={116}
+                                        height={116}
+                                        unoptimized
+                                    />
+                                </div>
+                                <div className="catalog_item__name">
+                                    Лофт c техникой
+                                </div>
+                                <div className="catalog_item__price">
+                                    22 199 360  ₽
+                                </div>
+                            </div>
+                            </Link>
+                        </div>
+                    </TabsContent>
+                </Tabs>
+
+                {/*<Alert>*/}
+                {/*    <BadgeInfo className="h-4 w-4" />*/}
+                {/*    <AlertTitle>Интерьеры не найдены</AlertTitle>*/}
+                {/*</Alert>*/}
             </div>
             <div className="catalog">
                 <h2>Товары для вашей квартиры</h2>
